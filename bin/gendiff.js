@@ -1,5 +1,8 @@
 #!/usr/bin/env node
-import { program } from 'commander';
+import { Command } from 'commander';
+import parseObjects from '../src/parse.js';
+
+const program = new Command();
 
 program
   .name('gendiff')
@@ -8,6 +11,10 @@ program
   .helpOption('-h, --help', 'output usage information')
   .option('-f, --format [type]', 'output format')
   .argument('<filepath1>')
-  .argument('<filepath2>');
+  .argument('<filepath2>')
+  .action((filepath1, filepath2) => {
+    const option = program.opts();
+    console.log(parseObjects(filepath1, filepath2, option.format));
+  });
 
 program.parse();
