@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-import parseObjects from '../src/parse.js';
+import genDiff from '../src/genDiffCal.js';
 
 const program = new Command();
 
@@ -14,7 +14,7 @@ program
   .argument('<filepath2>')
   .action((filepath1, filepath2) => {
     const option = program.opts();
-    console.log(parseObjects(filepath1, filepath2, option.format));
+    console.log(genDiff(filepath1, filepath2, option.format));
   });
 
 program.parse();
