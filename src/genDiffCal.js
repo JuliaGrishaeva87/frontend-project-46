@@ -7,12 +7,14 @@ const parseObjects = (filepath) => {
   const file = JSON.parse(readFileSync(path.resolve(process.cwd(), filepath), 'utf-8'))
   return file
 }
-
 const genDiff = (filepath1, filepath2) => {
   const data1 = parseObjects(getFixturePath(filepath1))
   const data2 = parseObjects(getFixturePath(filepath2))
-  const keys = [...new Set([...Object.keys(data1), ...Object.keys(data2)])].sort((a, b) => a.localeCompare(b))
+  return makeDiff(data1, data2)
+}
 
+const makeDiff = (data1, data2) => {
+  const keys = [...new Set([...Object.keys(data1), ...Object.keys(data2)])].sort((a, b) => a.localeCompare(b))
   const result = ['{\r\n']
   for (const key of keys) {
     if (data1[key] !== undefined && data2[key] !== undefined) {
@@ -34,4 +36,4 @@ const genDiff = (filepath1, filepath2) => {
   return result.join('')
 }
 
-export default genDiff
+export { genDiff, makeDiff }
