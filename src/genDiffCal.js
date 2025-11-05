@@ -11,7 +11,7 @@ const parseObjects = (filepath) => {
 const genDiff = (filepath1, filepath2) => {
   const data1 = parseObjects(getFixturePath(filepath1))
   const data2 = parseObjects(getFixturePath(filepath2))
-  const keys = [...new Set([...Object.keys(data1), ...Object.keys(data2)])].sort()
+  const keys = [...new Set([...Object.keys(data1), ...Object.keys(data2)])].sort((a, b) => a.localeCompare(b))
 
   const result = ['{\r\n']
   for (const key of keys) {
