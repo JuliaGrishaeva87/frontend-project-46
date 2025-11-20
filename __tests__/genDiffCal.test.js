@@ -47,5 +47,12 @@ test.each(testCases)('genDiff-%s', (description, file1, file2, result) => {
 })
 
 test('genDiff-wrong', () => {
-  expect(genDiff('filepath1-txt.txt', 'filepath2-txt.txt')).toEqual('Wrong format')
+  expect(genDiff('filepath1-txt.txt', 'filepath2-txt.txt', 'stylish')).toEqual('Wrong format')
+})
+
+test('genDiff-wrong-output', () => {
+  const file1 = 'filepath1.json'
+  const file2 = 'filepath2.json'
+  const wrongFormat = 'xml'
+  expect(genDiff(file1, file2, wrongFormat)).toEqual(`Unknown format: ${wrongFormat}`)
 })

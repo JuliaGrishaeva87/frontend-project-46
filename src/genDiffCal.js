@@ -10,6 +10,8 @@ const genDiff = (filepath1, filepath2, format) => {
     switch (format) {
       case 'stylish':
         return stylish(comparedObj)
+      default:
+        throw new Error(`Unknown format: ${format}`)
     }
   }
   catch (error) {
@@ -18,32 +20,28 @@ const genDiff = (filepath1, filepath2, format) => {
 }
 
 const compare = (tree1, tree2) => {
-  let newTree = {}
   const keys = [...new Set([...Object.keys(tree1), ...Object.keys(tree2)])].sort((a, b) => a.localeCompare(b))
-  keys.forEach((key) => {
+  return keys.reduce((acc, key) => {
     const value1 = tree1[key]
     const value2 = tree2[key]
-
     if (_.has(tree1, key) && _.has(tree2, key)) {
       if (_.isObject(value1) && _.isObject(value2)) {
-        newTree[key] = { status: 'NESTED', children: compare(value1, value2) }
+        return { ...acc, [key]: { status: 'NESTED', children: compare(value1, value2) } }
       }
       else if (value1 === value2) {
-        newTree[key] = { status: 'UNCHANGED', value: value1 }
+        return { ...acc, [key]: { status: 'UNCHANGED', value: value1 } }
       }
       else {
-        newTree[key] = { status: 'CHANGED', deleted: value1, added: value2 }
+        return { ...acc, [key]: { status: 'CHANGED', deleted: value1, added: value2 } }
       }
     }
     else if (_.has(tree1, key)) {
-      newTree[key] = { status: 'DELETED', value: value1 }
+      return { ...acc, [key]: { status: 'DELETED', value: value1 } }
     }
-    else if (_.has(tree2, key)) {
-      newTree[key] = { status: 'ADDED', value: value2 }
+    else {
+      return { ...acc, [key]: { status: 'ADDED', value: value2 } }
     }
-  })
-
-  return newTree
+  }, {})
 }
 
 export default genDiff
