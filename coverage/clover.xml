@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1763900797013" clover="3.2.0">
-  <project timestamp="1763900797013" name="All files">
+<coverage generated="1763905006750" clover="3.2.0">
+  <project timestamp="1763905006750" name="All files">
     <metrics statements="85" coveredstatements="85" conditionals="41" coveredconditionals="41" methods="18" coveredmethods="18" elements="144" coveredelements="144" complexity="0" loc="85" ncloc="85" packages="2" files="6" classes="6"/>
     <package name="src">
       <metrics statements="39" coveredstatements="39" conditionals="19" coveredconditionals="19" methods="9" coveredmethods="9"/>
@@ -84,8 +84,8 @@
         <line num="28" count="12" type="stmt"/>
         <line num="29" count="12" type="stmt"/>
         <line num="30" count="12" type="stmt"/>
-        <line num="36" count="15" type="stmt"/>
-        <line num="39" count="3" type="stmt"/>
+        <line num="35" count="15" type="stmt"/>
+        <line num="38" count="3" type="stmt"/>
       </file>
       <file name="stylish.js" path="/mnt/c/Users/justj/hexlet/frontend-project-46/src/formatters/stylish.js">
         <metrics statements="20" coveredstatements="20" conditionals="8" coveredconditionals="8" methods="3" coveredmethods="3"/>

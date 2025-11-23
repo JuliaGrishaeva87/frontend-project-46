@@ -23,12 +23,11 @@ const plain = (tree) => {
             return `Property '${currentPath}' was removed`
           case 'ADDED':
             return `Property '${currentPath}' was added with value: ${formatValue(val.value)}`
-          case 'CHANGED': {
-            {
-              const formattedDeleted = formatValue(val.deleted)
-              const formattedAdded = formatValue(val.added)
-              return `Property '${currentPath}' was updated. From ${formattedDeleted} to ${formattedAdded}`
-            }
+          case 'CHANGED':
+          {
+            const formattedDeleted = formatValue(val.deleted)
+            const formattedAdded = formatValue(val.added)
+            return `Property '${currentPath}' was updated. From ${formattedDeleted} to ${formattedAdded}`
           }
         }
       })
