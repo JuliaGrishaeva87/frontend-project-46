@@ -6,6 +6,7 @@ const formats = ['json', 'yml', 'yaml']
 const expectedStylishFlat = readFile('result.txt').trim()
 const expectedStylishNested = readFile('result-nested.txt').trim()
 const expectedPlainNested = readFile('result-plain.txt').trim()
+const expectedJSONNested = readFile('result-json(nested).txt').trim()
 
 formats.forEach((ext1) => {
   formats.forEach((ext2) => {
@@ -30,6 +31,14 @@ formats.forEach((ext1) => {
     const file1 = `filepath1-nested.${ext1}`
     const file2 = `filepath2-nested.${ext1}`
     expect(genDiff(file1, file2, 'plain')).toEqual(expectedPlainNested)
+  })
+})
+
+formats.forEach((ext1) => {
+  test(`genDiff json nested ${ext1}`, () => {
+    const file1 = `filepath1-nested.${ext1}`
+    const file2 = `filepath2-nested.${ext1}`
+    expect(genDiff(file1, file2, 'json')).toEqual(expectedJSONNested)
   })
 })
 

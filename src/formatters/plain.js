@@ -31,10 +31,8 @@ const plain = (tree) => {
           }
         }
       })
-
     return lines.join('\n')
   }
-
   return iter(tree, '')
 }
 

@@ -12,3 +12,6 @@ Asciinema with nested objects. Formatter stylish. gendiff .json, .yml, .yaml - f
 
 Asciinema with nested objects. Formatters stylish&plain. gendiff .json, .yml, .yaml - files
 <a href="https://asciinema.org/a/jpyryB6NNiEvVMlOIHwDTeDwK" target="_blank"><img src="https://asciinema.org/a/jpyryB6NNiEvVMlOIHwDTeDwK.svg" /></a>
+
+Asciinema with nested objects. Formatters stylish,plain,json. gendiff .json, .yml, .yaml - files
+<a href="https://asciinema.org/a/m2JNPjZKIfUUO40Plys0Nq4MP" target="_blank"><img src="https://asciinema.org/a/m2JNPjZKIfUUO40Plys0Nq4MP.svg" /></a>
