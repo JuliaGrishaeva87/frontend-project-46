@@ -1,6 +1,29 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/JuliaGrishaeva87/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/JuliaGrishaeva87/frontend-project-46/actions)  [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=JuliaGrishaeva87_frontend-project-46&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=JuliaGrishaeva87_frontend-project-46)  [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=JuliaGrishaeva87_frontend-project-46&metric=coverage)](https://sonarcloud.io/summary/new_code?id=JuliaGrishaeva87_frontend-project-46)  [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=JuliaGrishaeva87_frontend-project-46&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=JuliaGrishaeva87_frontend-project-46)  [![Make install, lint and run](https://github.com/JuliaGrishaeva87/frontend-project-46/actions/workflows/makeLint&Run.yml/badge.svg)](https://github.com/JuliaGrishaeva87/frontend-project-46/actions/workflows/makeLint&Run.yml)
 
+## Overview
+
+"Diff generator" is a CLI tool built in JavaScript using the Commander library. This tool outputs the changes between 2 files. 
+The difference between the data returns as a string. 
+Use .json and .yml/.yaml files to compare.
+Use three formats: stylish, plain, and json to output the difference.
+
+## Setup
+
+```bash
+make install
+```
+## Output usage information
+
+```bash
+gendiff -h
+```
+## Run the diff generator. You can use one of three formats - stylish, plain, json. (The Stylish format is the default, using the '-f' flag and its name is not necessary)
+
+```bash
+gendiff -f <output format> filepath1 filepath2
+```
+
 Asciinema with '-h' property. gendiff .json - files
 <a href="https://asciinema.org/a/IbO88NsoHTGoqNc6gaPDOCsrt" target="_blank"><img src="https://asciinema.org/a/IbO88NsoHTGoqNc6gaPDOCsrt.svg" /></a>
 
