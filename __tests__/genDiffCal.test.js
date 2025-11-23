@@ -3,51 +3,45 @@ import genDiff from '../src/genDiffCal.js'
 import { readFile } from '../src/buildAdress.js'
 
 const formats = ['json', 'yml', 'yaml']
-const expectedResultFile = 'result.txt'
-const expectedResultFile2 = 'result-nested.txt'
+const expectedStylishFlat = readFile('result.txt').trim()
+const expectedStylishNested = readFile('result-nested.txt').trim()
+const expectedPlainNested = readFile('result-plain.txt').trim()
 
-const testCases = []
-
-formats.forEach((format1) => {
-  formats.forEach((format2) => {
-    const description = `${format1}/${format2}`
-    const file1 = `filepath1.${format1}`
-    const file2 = `filepath2.${format2}`
-    testCases.push([description, file1, file2, expectedResultFile])
+formats.forEach((ext1) => {
+  formats.forEach((ext2) => {
+    test(`genDiff stylish flat ${ext1}/${ext2}`, () => {
+      const file1 = `filepath1.${ext1}`
+      const file2 = `filepath2.${ext2}`
+      expect(genDiff(file1, file2, 'stylish')).toEqual(expectedStylishFlat)
+    })
   })
 })
 
-formats.forEach((format1) => {
-  formats.forEach((format2) => {
-    const description = `${format1}/${format2} - nested`
-    const file1 = `filepath1-nested.${format1}`
-    const file2 = `filepath2-nested.${format1}`
-    testCases.push([description, file1, file2, expectedResultFile2])
+formats.forEach((ext1) => {
+  test(`genDiff stylish nested ${ext1}`, () => {
+    const file1 = `filepath1-nested.${ext1}`
+    const file2 = `filepath2-nested.${ext1}`
+    expect(genDiff(file1, file2, 'stylish')).toEqual(expectedStylishNested)
   })
 })
 
-formats.forEach((format) => {
-  const description = format
-  const file1 = `filepath1.${format}`
-  const file2 = `filepath2.${format}`
-  testCases.push([description, file1, file2, expectedResultFile])
+formats.forEach((ext1) => {
+  test(`genDiff plain nested ${ext1}`, () => {
+    const file1 = `filepath1-nested.${ext1}`
+    const file2 = `filepath2-nested.${ext1}`
+    expect(genDiff(file1, file2, 'plain')).toEqual(expectedPlainNested)
+  })
 })
 
-formats.forEach((format) => {
-  const description = `${format}-nested`
-  const file1 = `filepath1-nested.${format}`
-  const file2 = `filepath2-nested.${format}`
-  testCases.push([description, file1, file2, expectedResultFile2])
-})
-
-test.each(testCases)('genDiff-%s', (description, file1, file2, result) => {
-  const expected = readFile(result).trim()
-  const format = 'stylish'
-  expect(genDiff(file1, file2, format)).toEqual(expected)
-})
-
-test('genDiff-wrong', () => {
+test('genDiff-wrong-input', () => {
   expect(genDiff('filepath1-txt.txt', 'filepath2-txt.txt', 'stylish')).toEqual('Wrong format')
+})
+
+test('genDiff uses stylish as default format', () => {
+  const file1 = 'filepath1.json'
+  const file2 = 'filepath2.json'
+  const expected = readFile('result.txt').trim()
+  expect(genDiff(file1, file2)).toEqual(expected)
 })
 
 test('genDiff-wrong-output', () => {

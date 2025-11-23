@@ -1,18 +1,13 @@
 import _ from 'lodash'
 import parseFile from './parsers.js'
-import stylish from '../src/formatters/stylish.js'
+import formatter from './formatters/index.js'
 
-const genDiff = (filepath1, filepath2, format) => {
+const genDiff = (filepath1, filepath2, format = 'stylish') => {
   try {
     const data1 = parseFile(filepath1)
     const data2 = parseFile(filepath2)
     const comparedObj = compare(data1, data2)
-    switch (format) {
-      case 'stylish':
-        return stylish(comparedObj)
-      default:
-        throw new Error(`Unknown format: ${format}`)
-    }
+    return formatter(comparedObj, format)
   }
   catch (error) {
     return error.message
