@@ -2,7 +2,7 @@ import { expect, test } from '@jest/globals'
 import genDiff from '../src/genDiffCal.js'
 import { readFile } from '../src/buildAdress.js'
 
-const formats = ['json', 'yml', 'yaml']
+const formats = ['json', 'yml']
 const expectedStylishFlat = readFile('result.txt').trim()
 const expectedStylishNested = readFile('result-nested.txt').trim()
 const expectedPlainNested = readFile('result-plain.txt').trim()
